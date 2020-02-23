@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using DecimalBinary_Converter;
 
 namespace methods {
     public class Methods {
@@ -16,6 +17,8 @@ namespace methods {
         public int oneSlot;
         public int biTotal;
         public char switcher;
+        public char[] letters = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' };
+        public char[] nums = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
 
 
         public void ConvToHexa(string binary) {
@@ -105,12 +108,51 @@ namespace methods {
 
             }
 
-            int hexaLength = hexas.Count;
             
         }
 
-        public void ConvToBinary(string hexdec) { 
-            
+        public void ConvToBinary(string hexdec) {
+            Dictionary<char, string> d = new Dictionary<char, string> {
+                {'A',"1010" },
+                {'B',"1011" },
+                {'C',"1100" },
+                {'D',"1101" },
+                {'E',"1110" },
+                {'F',"1111" },
+                {'a',"1010" },
+                {'b',"1011" },
+                {'c',"1100" },
+                {'d',"1101" },
+                {'e',"1110" },
+                {'f',"1111" },
+            };
+
+            Dictionary<char, string> y = new Dictionary<char, string> {
+                {'0',"0000" },
+                {'1',"0001" },
+                {'2',"0010" },
+                {'3',"0011" },
+                {'4',"0100" },
+                {'5',"0101" },
+                {'6',"0110" },
+                {'7',"0111" },
+                {'8',"1000" },
+                {'9',"1001" },
+            };
+            Console.Write("\nYour binary is: ");
+
+            foreach (char i in hexdec) {
+                if (d.ContainsKey(i))
+                {
+                    Console.Write(d[i]);
+                    Console.Write(" ");
+                }
+                else if (y.ContainsKey(i)) {
+                    Console.Write(y[i]);
+                    Console.Write(" ");
+                }
+            }
+
         }
     }
 }
