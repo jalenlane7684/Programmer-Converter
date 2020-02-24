@@ -8,8 +8,9 @@ using DecimalBinary_Converter;
 
 namespace methods {
     public class Methods {
-        public char[] seperator = { ' ' };
-        public Int32 count = 8;
+        public char[] seperator = { ' ',};
+        public char[] perSeperator = { '.' };
+        public Int32 count = 99;
         public List<char> hexas = new List<char>();
         public int eightSlot;
         public int fourSlot;
@@ -19,7 +20,6 @@ namespace methods {
         public char switcher;
         public char[] letters = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' };
         public char[] nums = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
-
 
         public void ConvToHexa(string binary) {
             char[] seperator = { ' ' };
@@ -111,8 +111,11 @@ namespace methods {
             
         }
 
-        public void ConvToBinary(string hexdec) {
-            Dictionary<char, string> d = new Dictionary<char, string> {
+        public void ConvToBinary(string val, string type) {
+
+            if (type == "hexadecimal" || type == "Hexadecimal" || type == "HEXADECIMAL")
+            {
+                Dictionary<char, string> d = new Dictionary<char, string> {
                 {'A',"1010" },
                 {'B',"1011" },
                 {'C',"1100" },
@@ -125,9 +128,9 @@ namespace methods {
                 {'d',"1101" },
                 {'e',"1110" },
                 {'f',"1111" },
-            };
+                };
 
-            Dictionary<char, string> y = new Dictionary<char, string> {
+                Dictionary<char, string> y = new Dictionary<char, string> {
                 {'0',"0000" },
                 {'1',"0001" },
                 {'2',"0010" },
@@ -138,21 +141,95 @@ namespace methods {
                 {'7',"0111" },
                 {'8',"1000" },
                 {'9',"1001" },
-            };
-            Console.Write("\nYour binary is: ");
+                };
 
-            foreach (char i in hexdec) {
-                if (d.ContainsKey(i))
+                Console.Write("\nYour binary is: ");
+
+                foreach (char i in val)
                 {
-                    Console.Write(d[i]);
-                    Console.Write(" ");
+                    if (d.ContainsKey(i))
+                    {
+                        Console.Write(d[i]);
+                        Console.Write(" ");
+                    }
+                    else if (y.ContainsKey(i))
+                    {
+                        Console.Write(y[i]);
+                        Console.Write(" ");
+                    }
                 }
-                else if (y.ContainsKey(i)) {
-                    Console.Write(y[i]);
-                    Console.Write(" ");
+
+            }
+            else if (type == "decimal" || type == "Decimal" || type == "DECIMAL") {
+                String[] octets = val.Split(perSeperator, count, StringSplitOptions.None);
+                Console.Write("\nYour binary number is:");
+
+                foreach (string octet in octets) {
+                    int value = Convert.ToInt32(octet);
+                    string binaryOutput = "0000 0000";
+                    StringBuilder bO = new StringBuilder(binaryOutput);
+
+                    while (value > 0)
+                    {
+                        if (value >= 128)
+                        {
+                            bO[0] = '1';
+                            value -= 128;
+                            continue;
+                        }
+                        else if (value >= 64 && value < 128)
+                        {
+                            bO[1] = '1';
+                            value -= 64;
+                            continue;
+                        }
+                        else if (value >= 32 && value < 64)
+                        {
+                            bO[2] = '1';
+                            value -= 32;
+                            continue;
+                        }
+                        else if (value >= 16 && value < 32)
+                        {
+                            bO[3] = '1';
+                            value -= 16;
+                            continue;
+                        }
+                        else if (value >= 8 && value < 16)
+                        {
+                            bO[5] = '1';
+                            value -= 8;
+                            continue;
+                        }
+                        else if (value >= 4 && value < 8)
+                        {
+                            bO[6] = '1';
+                            value -= 4;
+                            continue;
+                        }
+                        else if (value >= 2 && value < 4)
+                        {
+                            bO[7] = '1';
+                            value -= 2;
+                            continue;
+                        }
+                        else if (value >= 1 && value < 2)
+                        {
+                            bO[8] = '1';
+                            value -= 1;
+                            continue;
+                        }
+
+                    }
+
+                    Console.Write("\n" + bO);
+
                 }
             }
+        }
 
+        public void ConvToDec(string value) { 
+            
         }
     }
 }
