@@ -228,8 +228,81 @@ namespace methods {
             }
         }
 
-        public void ConvToDec(string value) { 
-            
+        public void ConvToDec(string val, string type) {
+            Console.WriteLine("Your decimal number is: ");
+            if (type == "hexadecimal" || type == "Hexadecimal" || type == "HEXADECIMAL") {
+                List<char> hexa = new List<char>();
+                List<int> addTogether = new List<int>();
+
+                foreach (char i in val) {
+                    hexa.Add(i);
+                }
+                hexa.Reverse();
+
+                foreach (char i in hexa) {
+                    char[] nums = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' };
+                    char[] letters = { 'a', 'b', 'c', 'd', 'e', 'f', 'A', 'B', 'C', 'D', 'E', 'F' };
+                    int power = Convert.ToInt32(hexa.IndexOf(i));
+                    if (nums.Contains(i))
+                    {
+                        
+                        addTogether.Add(Convert.ToInt32(Convert.ToInt32(i) * Math.Pow(16, hexa.IndexOf(i))));
+                    }
+                    else if (letters.Contains(i)) {
+
+                        switch (i) {
+
+                            case 'A':
+                                addTogether.Add(Convert.ToInt32(10 * Math.Pow(16, power)));
+                                break;
+                            case 'a':
+                                addTogether.Add(Convert.ToInt32(10 * Math.Pow(16, power)));
+                                break;
+                            case 'B':
+                                addTogether.Add(Convert.ToInt32(11 * Math.Pow(16, power)));
+                                break;
+                            case 'b':
+                                addTogether.Add(Convert.ToInt32(11 * Math.Pow(16, power)));
+                                break;
+                            case 'C':
+                                addTogether.Add(Convert.ToInt32(12 * Math.Pow(16, power)));
+                                break;
+                            case 'c':
+                                addTogether.Add(Convert.ToInt32(12 * Math.Pow(16, power)));
+                                break;
+                            case 'D':
+                                addTogether.Add(Convert.ToInt32(13 * Math.Pow(16, power)));
+                                break;
+                            case 'd':
+                                addTogether.Add(Convert.ToInt32(13 * Math.Pow(16, power)));
+                                break;
+                            case 'E':
+                                addTogether.Add(Convert.ToInt32(14 * Math.Pow(16, power)));
+                                break;
+                            case 'e':
+                                addTogether.Add(Convert.ToInt32(14 * Math.Pow(16, power)));
+                                break;
+                            case 'F':
+                                addTogether.Add(Convert.ToInt32(15 * Math.Pow(16, power)));
+                                break;
+                            case 'f':
+                                addTogether.Add(Convert.ToInt32(15 * Math.Pow(16, power)));
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+
+                }
+
+                int decNum = 0;
+                foreach (int i in addTogether) {
+                    decNum += i;
+                }
+                Console.Write(decNum);
+                Console.WriteLine("\n");
+            }
         }
     }
 }

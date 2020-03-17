@@ -68,7 +68,7 @@ namespace DecimalBinary_Converter
 
                         } else if (g.convert2 == "Decimal" || g.convert2 == "DECIMAL" || g.convert2 == "decimal")
                         {
-                            m.ConvToDec(number);
+                            m.ConvToDec(number, g.valueType);
 
                         }
                     }
@@ -98,7 +98,7 @@ namespace DecimalBinary_Converter
                             }
                             catch (Exception)
                             {
-                                Console.WriteLine("\nYour hexadecimal does not only contain numbers and letters!");
+                                Console.WriteLine("\nYour hexadecimal does not only contain numbers and letters A through F!");
                                 Console.WriteLine("\nMake sure your hexadecimal only contains numbers 0-9, and letters A-F.");
                                 g.containsWrongChar = true;
                                 break;
@@ -121,7 +121,7 @@ namespace DecimalBinary_Converter
                         }
                         else if (g.convert2 == "Decimal" || g.convert2 == "DECIMAL" || g.convert2 == "decimal")
                         {
-                            m.ConvToDec(number2);
+                            m.ConvToDec(number2,g.valueType);
 
                         }
                     }
