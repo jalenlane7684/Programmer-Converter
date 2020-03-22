@@ -230,79 +230,96 @@ namespace methods {
 
         public void ConvToDec(string val, string type) {
             Console.WriteLine("Your decimal number is: ");
-            if (type == "hexadecimal" || type == "Hexadecimal" || type == "HEXADECIMAL") {
-                List<char> hexa = new List<char>();
-                List<int> addTogether = new List<int>();
+            if (type == "hexadecimal" || type == "Hexadecimal" || type == "HEXADECIMAL")
+            {
+                int hexaPower = val.Length - 1;
+                int total = 0;
 
-                foreach (char i in val) {
-                    hexa.Add(i);
-                }
-                hexa.Reverse();
-
-                foreach (char i in hexa) {
-                    char[] nums = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' };
-                    char[] letters = { 'a', 'b', 'c', 'd', 'e', 'f', 'A', 'B', 'C', 'D', 'E', 'F' };
-                    int power = Convert.ToInt32(hexa.IndexOf(i));
-                    if (nums.Contains(i))
+                foreach (char i in val)
+                {
+                    int numConv;
+                    if (Char.IsNumber(i))
                     {
-                        
-                        addTogether.Add(Convert.ToInt32(Convert.ToInt32(i) * Math.Pow(16, hexa.IndexOf(i))));
+                        numConv = Convert.ToInt32(Char.GetNumericValue(i) * Math.Pow(16, hexaPower));
+                        total = total + numConv;
+                        hexaPower -= 1;
                     }
-                    else if (letters.Contains(i)) {
+                    else if (Char.IsLetter(i)) {
 
-                        switch (i) {
+                        switch (i)
+                        {
 
                             case 'A':
-                                addTogether.Add(Convert.ToInt32(10 * Math.Pow(16, power)));
+                                numConv = Convert.ToInt32(10 * Math.Pow(16, hexaPower));
+                                total = total + numConv;
+                                hexaPower -= 1;
                                 break;
                             case 'a':
-                                addTogether.Add(Convert.ToInt32(10 * Math.Pow(16, power)));
+                                numConv = Convert.ToInt32(10 * Math.Pow(16, hexaPower));
+                                total = total + numConv;
+                                hexaPower -= 1;
                                 break;
                             case 'B':
-                                addTogether.Add(Convert.ToInt32(11 * Math.Pow(16, power)));
+                                numConv = Convert.ToInt32(11 * Math.Pow(16, hexaPower));
+                                total = total + numConv;
+                                hexaPower -= 1;
                                 break;
                             case 'b':
-                                addTogether.Add(Convert.ToInt32(11 * Math.Pow(16, power)));
+                                numConv = Convert.ToInt32(11 * Math.Pow(16, hexaPower));
+                                total = total + numConv;
+                                hexaPower -= 1;
                                 break;
                             case 'C':
-                                addTogether.Add(Convert.ToInt32(12 * Math.Pow(16, power)));
+                                numConv = Convert.ToInt32(12 * Math.Pow(16, hexaPower));
+                                total = total + numConv;
+                                hexaPower -= 1;
                                 break;
                             case 'c':
-                                addTogether.Add(Convert.ToInt32(12 * Math.Pow(16, power)));
+                                numConv = Convert.ToInt32(12 * Math.Pow(16, hexaPower));
+                                total = total + numConv;
+                                hexaPower -= 1;
                                 break;
                             case 'D':
-                                addTogether.Add(Convert.ToInt32(13 * Math.Pow(16, power)));
+                                numConv = Convert.ToInt32(13 * Math.Pow(16, hexaPower));
+                                total = total + numConv;
+                                hexaPower -= 1;
                                 break;
                             case 'd':
-                                addTogether.Add(Convert.ToInt32(13 * Math.Pow(16, power)));
+                                numConv = Convert.ToInt32(13 * Math.Pow(16, hexaPower));
+                                total = total + numConv;
+                                hexaPower -= 1;
                                 break;
                             case 'E':
-                                addTogether.Add(Convert.ToInt32(14 * Math.Pow(16, power)));
+                                numConv = Convert.ToInt32(14 * Math.Pow(16, hexaPower));
+                                total = total + numConv;
+                                hexaPower -= 1;
                                 break;
                             case 'e':
-                                addTogether.Add(Convert.ToInt32(14 * Math.Pow(16, power)));
+                                numConv = Convert.ToInt32(14 * Math.Pow(16, hexaPower));
+                                total = total + numConv;
+                                hexaPower -= 1;
                                 break;
                             case 'F':
-                                addTogether.Add(Convert.ToInt32(15 * Math.Pow(16, power)));
+                                numConv = Convert.ToInt32(15 * Math.Pow(16, hexaPower));
+                                total = total + numConv;
+                                hexaPower -= 1;
                                 break;
                             case 'f':
-                                addTogether.Add(Convert.ToInt32(15 * Math.Pow(16, power)));
+                                numConv = Convert.ToInt32(15 * Math.Pow(16, hexaPower));
+                                total = total + numConv;
+                                hexaPower -= 1;
                                 break;
 
                             default:
                                 break;
                         }
                     }
-
                 }
 
-                int decNum = 0;
-                foreach (int i in addTogether) {
-                    decNum += i;
-                }
-                Console.Write(decNum);
-                Console.WriteLine("\n");
+                Console.Write(total);
             }
+
+
         }
     }
 }

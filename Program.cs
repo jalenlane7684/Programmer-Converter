@@ -22,7 +22,7 @@ namespace DecimalBinary_Converter
             Console.WriteLine("\nHello! What is your name?");
             string name = Console.ReadLine();
             Console.WriteLine("\nHello {0}! This is a base converter. It will convert hexadecimals to decimal or binary, and vice versa for each one!", name);
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
             
 
             while (true)
@@ -44,7 +44,6 @@ namespace DecimalBinary_Converter
 
                 if (g.valueType == "binary" || g.valueType == "Binary" || g.valueType == "BINARY")
                 {
-                    Thread.Sleep(1000);
                     Console.WriteLine("\nWhat is your number? Please sepearate the number with a space every four bits. (ie 1001 1001)");
                     string number = Console.ReadLine();
                     Console.WriteLine("\nConverting...");
@@ -79,7 +78,6 @@ namespace DecimalBinary_Converter
                 {
                     char[] nums = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' };
                     char[] letters = {'a', 'b', 'c', 'd', 'e', 'f','A','B','C','D','E','F'};
-                    Thread.Sleep(1000);
                     Console.WriteLine("\nWhat is your hexadecimal? Please only use numbers 1-9 and letters A-F.");
                     string number2 = Console.ReadLine();
                     Console.WriteLine("\nConverting...");
@@ -130,7 +128,6 @@ namespace DecimalBinary_Converter
                 else if (g.valueType == "decimal" || g.valueType == "Decimal" || g.valueType == "DECIMAL")
                 {
                     char[] decNums = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.' };
-
                     Console.WriteLine("\nWhat is your number? Currently, you can only convert decimals to binary. Seperate each octet with a period (ie 122.34.32");
                     string number3 = Console.ReadLine();
                     Console.WriteLine("\nConverting...");
