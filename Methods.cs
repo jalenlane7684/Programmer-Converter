@@ -21,93 +21,146 @@ namespace methods {
         public char[] letters = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' };
         public char[] nums = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
 
-        public void ConvToHexa(string binary) {
-            char[] seperator = { ' ' };
-            Int32 count = 8;
-            String[] bits = binary.Split(seperator, count, StringSplitOptions.None);
-            List<char> hexas = new List<char>();
+        public void ConvToHexa(string val, string type) {
 
-            Console.Write("Your hexadecimal is: ");
-            foreach (string bit in bits) {
-                if (bit[0] == '1')
-                {
-                    eightSlot = 8;
-                }
-                else {
-                    eightSlot = 0;
-                }
+            if (type == "binary" || type == "BINARY" || type == "Binary")
+            {
+                char[] seperator = { ' ' };
+                Int32 count = 8;
+                String[] bits = val.Split(seperator, count, StringSplitOptions.None);
+                List<char> hexas = new List<char>();
 
-                if (bit[1] == '1')
+                Console.Write("Your hexadecimal is: ");
+                foreach (string bit in bits)
                 {
-                    fourSlot = 4;
-                }
-                else
-                {
-                    fourSlot = 0;
-                }
+                    if (bit.Length != 4) {
+                        Console.WriteLine("One of your 4-bit segments is not 4 bits!");
+                        return;
+                    }
+                    if (bit[0] == '1')
+                    {
+                        eightSlot = 8;
+                    }
+                    else
+                    {
+                        eightSlot = 0;
+                    }
 
-                if (bit[2] == '1')
-                {
-                    twoSlot = 2;
-                }
-                else
-                {
-                    twoSlot = 0;
-                }
+                    if (bit[1] == '1')
+                    {
+                        fourSlot = 4;
+                    }
+                    else
+                    {
+                        fourSlot = 0;
+                    }
 
-                if (bit[3] == '1')
-                {
-                    oneSlot = 1;
-                }
-                else
-                {
-                    oneSlot = 0;
-                }
+                    if (bit[2] == '1')
+                    {
+                        twoSlot = 2;
+                    }
+                    else
+                    {
+                        twoSlot = 0;
+                    }
 
-                biTotal = eightSlot + fourSlot + twoSlot + oneSlot;
+                    if (bit[3] == '1')
+                    {
+                        oneSlot = 1;
+                    }
+                    else
+                    {
+                        oneSlot = 0;
+                    }
 
+                    biTotal = eightSlot + fourSlot + twoSlot + oneSlot;
+
+
+
+                    switch (biTotal)
+                    {
+                        case 10:
+                            switcher = 'A';
+                            Console.Write(switcher);
+                            break;
+
+                        case 11:
+                            switcher = 'B';
+                            Console.Write(switcher);
+                            break;
+
+                        case 12:
+                            switcher = 'C';
+                            Console.Write(switcher);
+                            break;
+
+                        case 13:
+                            switcher = 'D';
+                            Console.Write(switcher);
+                            break;
+
+                        case 14:
+                            switcher = 'E';
+                            Console.Write(switcher);
+                            break;
+
+                        case 15:
+                            switcher = 'F';
+                            Console.Write(switcher);
+                            break;
+                        default:
+                            Console.Write(biTotal);
+                            break;
+                    }
+
+                    hexas.Add(switcher);
+
+
+                }
+            }
+            else if (type == "DECIMAL" || type == "Decimal" || type == "decimal") {
+                Console.WriteLine("Your Hexadecimal number is: ");
+                val.Trim();
+                int dec = Int32.Parse(val);
                 
-
-                switch (biTotal) {
-                    case 10:
-                        switcher = 'A';
-                        Console.Write(switcher);
-                        break;
-
-                    case 11:
-                        switcher = 'B';
-                        Console.Write(switcher);
-                        break;
-
-                    case 12:
-                        switcher = 'C';
-                        Console.Write(switcher);
-                        break;
-
-                    case 13:
-                        switcher = 'D';
-                        Console.Write(switcher);
-                        break;
-
-                    case 14:
-                        switcher = 'E';
-                        Console.Write(switcher);
-                        break;
-
-                    case 15:
-                        switcher = 'F';
-                        Console.Write(switcher);
-                        break;
-                    default:
-                        Console.Write(biTotal);
-                        break;
+                List<int> hexNums = new List<int>();
+                while (dec > 0) {
+                    int remainder = dec % 16;
+                    hexNums.Add(remainder);
+                    dec = dec / 16;
+                    
                 }
 
-                hexas.Add(switcher);
+                hexNums.Reverse();
 
+                foreach (int i in hexNums) {
+                    switch (i)
+                    {
+                        case 10:
+                            Console.Write('A');
+                            break;
+                        case 11:
+                            Console.Write('B');
+                            break;
+                        case 12:
+                            Console.Write('C');
+                            break;
+                        case 13:
+                            Console.Write('D');
+                            break;
+                        case 14:
+                            Console.Write('E');
+                            break;
+                        case 15:
+                            Console.Write('F');
+                            break;
+                        default:
+                            Console.Write(i);
+                            break;
+                    }
+                }
 
             }
-
             
         }
 
@@ -115,6 +168,8 @@ namespace methods {
 
             if (type == "hexadecimal" || type == "Hexadecimal" || type == "HEXADECIMAL")
             {
+                val.Trim();
+
                 Dictionary<char, string> d = new Dictionary<char, string> {
                 {'A',"1010" },
                 {'B',"1011" },
@@ -161,6 +216,8 @@ namespace methods {
 
             }
             else if (type == "decimal" || type == "Decimal" || type == "DECIMAL") {
+
+                val.Trim();
                 String[] octets = val.Split(perSeperator, count, StringSplitOptions.None);
                 Console.Write("\nYour binary number is:");
 
@@ -229,9 +286,9 @@ namespace methods {
         }
 
         public void ConvToDec(string val, string type) {
-            Console.WriteLine("Your decimal number is: ");
             if (type == "hexadecimal" || type == "Hexadecimal" || type == "HEXADECIMAL")
             {
+                val.Trim();
                 int hexaPower = val.Length - 1;
                 int total = 0;
 
@@ -244,7 +301,8 @@ namespace methods {
                         total = total + numConv;
                         hexaPower -= 1;
                     }
-                    else if (Char.IsLetter(i)) {
+                    else if (Char.IsLetter(i))
+                    {
 
                         switch (i)
                         {
@@ -315,8 +373,45 @@ namespace methods {
                         }
                     }
                 }
-
+                Console.WriteLine("Your decimal number is: ");
                 Console.Write(total);
+            }
+            else if (type == "BINARY" || type == "Binary" || type == "binary") {
+                val.Trim();
+                String[] eightBits = val.Split(perSeperator, count, StringSplitOptions.None);
+                int stringPosition = eightBits.Length;
+                Console.WriteLine("Your decimal number is: ");
+
+                foreach (string i in eightBits) {
+                    stringPosition -= 1;
+                    if (i.Length != 8)
+                    {
+                        Console.WriteLine("The length of one of 8-bit segments was not 8! Make sure every 8 bits is separated with a period (.)!\n");
+                        return;
+                    }
+                    else {
+                        double total = 0;
+                        double max = 128;
+                        foreach (char a in i)
+                        {
+
+                            if (Char.GetNumericValue(a) == 1)
+                            {
+                                total += max;
+                            }
+                            max /= 2;
+                        }
+
+                        if (stringPosition == 0)
+                        {
+                            Console.Write(total);
+                        }
+                        else {
+                            Console.Write(total + ".");
+                        }
+                        
+                    }
+                }
             }
 
 
