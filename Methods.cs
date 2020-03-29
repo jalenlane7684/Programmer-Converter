@@ -8,26 +8,21 @@ using MainProgram;
 
 namespace methods {
     public class Converters {
-        private char[] seperator = { ' ',};
         private char[] perSeperator = { '.' };
         private Int32 count = 99;
-        private List<char> hexas = new List<char>();
         private int eightSlot;
         private int fourSlot;
         private int twoSlot;
         private int oneSlot;
         private int biTotal;
         private char switcher;
-        private char[] letters = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' };
-        private char[] nums = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
 
         public void ConvToHexa(string val, string type) {
-
+            Console.ForegroundColor = ConsoleColor.Green;
             if (type == "binary" || type == "BINARY" || type == "Binary")
             {
-                char[] seperator = { ' ' };
                 Int32 count = 8;
-                String[] bits = val.Split(seperator, count, StringSplitOptions.None);
+                String[] bits = val.Split(perSeperator, count, StringSplitOptions.None);
                 List<char> hexas = new List<char>();
 
                 Console.Write("Your hexadecimal is: ");
@@ -165,7 +160,7 @@ namespace methods {
         }
 
         public void ConvToBinary(string val, string type) {
-
+            Console.ForegroundColor = ConsoleColor.Cyan;
             if (type == "hexadecimal" || type == "Hexadecimal" || type == "HEXADECIMAL")
             {
                 val.Trim();
@@ -286,6 +281,7 @@ namespace methods {
         }
 
         public void ConvToDec(string val, string type) {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             if (type == "hexadecimal" || type == "Hexadecimal" || type == "HEXADECIMAL")
             {
                 val.Trim();

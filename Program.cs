@@ -28,6 +28,7 @@ namespace MainProgram
 
             while (true)
             {
+                Console.ForegroundColor = ConsoleColor.White;
                 g.containsWrongChar = false;
                 Console.WriteLine("\nWhat is your value type? You can say, hexadecimal, decimal, or binary, as well as their capital and lowercase counterparts!");
                 Console.WriteLine("\nIf you type 'quit', then the program will stop.");
@@ -45,14 +46,14 @@ namespace MainProgram
 
                 if (g.valueType == "binary" || g.valueType == "Binary" || g.valueType == "BINARY")
                 {
-                    Console.WriteLine("\nWhat is your number? If you are converting to hexadecimal, seperate every four bits with a space (1001 1000). If you are converting to a decimal IP Address, seperate every EIGHT bits with a decimal point (10001010.10010001).");
+                    Console.WriteLine("\nWhat is your number? If you are converting to hexadecimal, seperate every four bits with a decimal point (1001.1000). If you are converting to a decimal IP Address, seperate every EIGHT bits with a decimal point (10001010.10010001).");
                     Console.WriteLine("\nIf you do not follow these instructions, you will not get a correct value!");
                     string number = Console.ReadLine();
                     Console.WriteLine("\nConverting...");
                     Thread.Sleep(2000);
 
                     foreach (char i in number) {
-                        if (!(Convert.ToString(i).Contains("1")) && !(Convert.ToString(i).Contains("0")) && !(Convert.ToString(i).Contains("."))) {
+                        if (!Convert.ToString(i).Contains("1") && !Convert.ToString(i).Contains("0") && !Convert.ToString(i).Contains(".")) {
                             Console.WriteLine("\nOne of your characters is not a binary number! Please only use '1' or '0'. ");
                             Thread.Sleep(1000);
                             g.containsWrongChar = true;
