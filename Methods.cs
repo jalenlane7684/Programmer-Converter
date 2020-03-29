@@ -4,22 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-using DecimalBinary_Converter;
+using MainProgram;
 
 namespace methods {
-    public class Methods {
-        public char[] seperator = { ' ',};
-        public char[] perSeperator = { '.' };
-        public Int32 count = 99;
-        public List<char> hexas = new List<char>();
-        public int eightSlot;
-        public int fourSlot;
-        public int twoSlot;
-        public int oneSlot;
-        public int biTotal;
-        public char switcher;
-        public char[] letters = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' };
-        public char[] nums = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
+    public class Converters {
+        private char[] seperator = { ' ',};
+        private char[] perSeperator = { '.' };
+        private Int32 count = 99;
+        private List<char> hexas = new List<char>();
+        private int eightSlot;
+        private int fourSlot;
+        private int twoSlot;
+        private int oneSlot;
+        private int biTotal;
+        private char switcher;
+        private char[] letters = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' };
+        private char[] nums = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
 
         public void ConvToHexa(string val, string type) {
 
@@ -121,7 +121,7 @@ namespace methods {
             else if (type == "DECIMAL" || type == "Decimal" || type == "decimal") {
                 Console.WriteLine("Your Hexadecimal number is: ");
                 val.Trim();
-                int dec = Int32.Parse(val);
+                int dec = int.Parse(val);
                 
                 List<int> hexNums = new List<int>();
                 while (dec > 0) {

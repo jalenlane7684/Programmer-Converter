@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 using methods;
 using System.Threading;
 
-namespace DecimalBinary_Converter
+namespace MainProgram
 {
     class Program
     {
         private const string Format = "\nHello {0}! This is a base converter. It will convert hexadecimals to decimal or binary, and vice versa for each one!";
-        public bool containsWrongChar = false;
-        public string valueType;
-        public string convert2;
+        private bool containsWrongChar = false;
+        private string valueType;
+        private string convert2;
 
         static void Main(string[] args)
         {
             Program g = new Program();
-            Methods m = new Methods();
+            Converters m = new Converters();
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("\nHello! What is your name?");
             string name = Console.ReadLine();
