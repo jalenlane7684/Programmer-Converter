@@ -412,5 +412,24 @@ namespace methods {
 
 
         }
+
+        public void ConvToOctal ( string val, string type )
+        {
+            if ( type.ToLower().Equals("decimal") )
+            {
+                int num = Convert.ToInt32(val);
+                int remainder = 0;
+                string collecter = "";
+
+                while ( num > 0 )
+                {
+                    remainder = num % 8;
+                    num /= 8;
+                    collecter = remainder.ToString() + collecter;
+                }
+
+                Console.WriteLine("Your Octal Value is: {0}", collecter);
+            }
+        }
     }
 }

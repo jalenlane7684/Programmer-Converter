@@ -34,7 +34,7 @@ namespace MainProgram
                 Console.WriteLine("\nIf you type 'quit', then the program will stop.");
                 g.valueType = Console.ReadLine();
 
-                if (g.valueType == "quit" || g.valueType == "Quit" || g.valueType == "QUIT") {
+                if (g.valueType.ToLower.Equals("quit") ) {
                     Console.WriteLine("\nHave a nice day!");
                     Console.WriteLine("\nPress any key to exit...");
                     Console.ReadLine();
@@ -44,7 +44,7 @@ namespace MainProgram
                 Console.WriteLine("\nYou have chosen {0}. What would you like to convert this value to?", g.valueType);
                 g.convert2 = Console.ReadLine();
 
-                if (g.valueType == "binary" || g.valueType == "Binary" || g.valueType == "BINARY")
+                if (g.valueType.ToLower.Equals("binary") )
                 {
                     Console.WriteLine("\nWhat is your number? If you are converting to hexadecimal, seperate every four bits with a decimal point (1001.1000). If you are converting to a decimal IP Address, seperate every EIGHT bits with a decimal point (10001010.10010001).");
                     Console.WriteLine("\nIf you do not follow these instructions, you will not get a correct value!");
@@ -65,12 +65,12 @@ namespace MainProgram
                         continue;
                     }
                     else {
-                        if (g.convert2 == "Hexadecimal" || g.convert2 == "HEXADECIMAL" || g.convert2 == "hexadecimal")
+                        if (g.convert2.ToLower.Equals("hexadecimal") )
                         {
                             m.ConvToHexa(number, g.valueType);
 
                         }
-                        else if (g.convert2 == "Decimal" || g.convert2 == "DECIMAL" || g.convert2 == "decimal")
+                        else if (g.convert2.ToLower.Equals("decimal") )
                         {
                             m.ConvToDec(number, g.valueType);
 
@@ -84,7 +84,7 @@ namespace MainProgram
                     Thread.Sleep(3000);
                 }
 
-                else if (g.valueType == "hexadecimal" || g.valueType == "Hexadecimal" || g.valueType == "HEXADECIMAL")
+                else if (g.valueType.ToLower.Equals("hexadecimal") )
                 {
                     char[] nums = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' };
                     char[] letters = {'a', 'b', 'c', 'd', 'e', 'f','A','B','C','D','E','F'};
@@ -108,12 +108,12 @@ namespace MainProgram
                         continue;
                     }
                     else {
-                        if (g.convert2 == "BINARY" || g.convert2 == "binary" || g.convert2 == "Binary")
+                        if (g.convert2.ToLower.Equals("binary") )
                         {
                             m.ConvToBinary(number, g.valueType);
 
                         }
-                        else if (g.convert2 == "Decimal" || g.convert2 == "DECIMAL" || g.convert2 == "decimal")
+                        else if (g.convert2.ToLower.Equals("decimal"))
                         {
                             m.ConvToDec(number, g.valueType);
 
@@ -126,7 +126,7 @@ namespace MainProgram
                     }
                 }
 
-                else if (g.valueType == "decimal" || g.valueType == "Decimal" || g.valueType == "DECIMAL")
+                else if ( g.valueType.ToLower().Equals("decimal") )
                 {
                     char[] decNums = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.' };
                     Console.WriteLine("\nWhat is your number? You cannot convert IP addresses to hexadecimal at this time.");
@@ -134,26 +134,33 @@ namespace MainProgram
                     Console.WriteLine("\nConverting...");
                     Thread.Sleep(2000);
 
-                    foreach (char i in number) {
-                        if (!(decNums.Contains(i))) {
+                    foreach ( char i in number )
+                    {
+                        if ( !( decNums.Contains(i) ) )
+                        {
                             Console.WriteLine("\nYour number does not only contain numbers! Do not have any letters or special characters other than space ( ) or period (.) in your number.");
                             g.containsWrongChar = true;
                             break;
                         }
                     }
 
-                    if (g.containsWrongChar == true)
+                    if ( g.containsWrongChar == true )
                     {
                         continue;
                     }
-                    else {
-                        if (g.convert2 == "hexadecimal" || g.convert2 == "HEXADECIMAL" || g.convert2 == "Hexadecimal")
+                    else
+                    {
+                        if ( g.convert2.ToLower().Equals("hexadecimal") )
                         {
                             m.ConvToHexa(number, g.valueType);
                         }
-                        else if (g.convert2 == "BINARY" || g.convert2 == "binary" || g.convert2 == "Binary")
+                        else if ( g.convert2.ToLower().Equals("binary") )
                         {
                             m.ConvToBinary(number, g.valueType);
+                        }
+                        else if ( g.convert2.ToLower().Equals("octal") )
+                        {
+                            m.ConvToOctal(number, g.valueType);
                         }
                         else
                         {
