@@ -34,7 +34,7 @@ namespace MainProgram
                 Console.WriteLine("\nIf you type 'quit', then the program will stop.");
                 g.valueType = Console.ReadLine();
 
-                if (g.valueType.ToLower.Equals("quit") ) {
+                if (g.valueType.ToLower().Equals("quit") ) {
                     Console.WriteLine("\nHave a nice day!");
                     Console.WriteLine("\nPress any key to exit...");
                     Console.ReadLine();
@@ -44,7 +44,7 @@ namespace MainProgram
                 Console.WriteLine("\nYou have chosen {0}. What would you like to convert this value to?", g.valueType);
                 g.convert2 = Console.ReadLine();
 
-                if (g.valueType.ToLower.Equals("binary") )
+                if (g.valueType.ToLower().Equals("binary") )
                 {
                     Console.WriteLine("\nWhat is your number? If you are converting to hexadecimal, seperate every four bits with a decimal point (1001.1000). If you are converting to a decimal IP Address, seperate every EIGHT bits with a decimal point (10001010.10010001).");
                     Console.WriteLine("\nIf you do not follow these instructions, you will not get a correct value!");
@@ -65,12 +65,12 @@ namespace MainProgram
                         continue;
                     }
                     else {
-                        if (g.convert2.ToLower.Equals("hexadecimal") )
+                        if (g.convert2.ToLower().Equals("hexadecimal") )
                         {
                             m.ConvToHexa(number, g.valueType);
 
                         }
-                        else if (g.convert2.ToLower.Equals("decimal") )
+                        else if (g.convert2.ToLower().Equals("decimal") )
                         {
                             m.ConvToDec(number, g.valueType);
 
@@ -84,7 +84,7 @@ namespace MainProgram
                     Thread.Sleep(3000);
                 }
 
-                else if (g.valueType.ToLower.Equals("hexadecimal") )
+                else if (g.valueType.ToLower().Equals("hexadecimal") )
                 {
                     char[] nums = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' };
                     char[] letters = {'a', 'b', 'c', 'd', 'e', 'f','A','B','C','D','E','F'};
@@ -108,12 +108,12 @@ namespace MainProgram
                         continue;
                     }
                     else {
-                        if (g.convert2.ToLower.Equals("binary") )
+                        if (g.convert2.ToLower().Equals("binary") )
                         {
                             m.ConvToBinary(number, g.valueType);
 
                         }
-                        else if (g.convert2.ToLower.Equals("decimal"))
+                        else if (g.convert2.ToLower().Equals("decimal"))
                         {
                             m.ConvToDec(number, g.valueType);
 

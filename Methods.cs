@@ -280,27 +280,28 @@ namespace methods {
             }
         }
 
-        public void ConvToDec(string val, string type) {
+        public void ConvToDec ( string val, string type )
+        {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            if (type == "hexadecimal" || type == "Hexadecimal" || type == "HEXADECIMAL")
+            if ( type == "hexadecimal" || type == "Hexadecimal" || type == "HEXADECIMAL" )
             {
                 val.Trim();
                 int hexaPower = val.Length - 1;
                 int total = 0;
 
-                foreach (char i in val)
+                foreach ( char i in val )
                 {
                     int numConv;
-                    if (Char.IsNumber(i))
+                    if ( Char.IsNumber(i) )
                     {
                         numConv = Convert.ToInt32(Char.GetNumericValue(i) * Math.Pow(16, hexaPower));
                         total = total + numConv;
                         hexaPower -= 1;
                     }
-                    else if (Char.IsLetter(i))
+                    else if ( Char.IsLetter(i) )
                     {
 
-                        switch (i)
+                        switch ( i )
                         {
 
                             case 'A':
@@ -372,44 +373,50 @@ namespace methods {
                 Console.WriteLine("Your decimal number is: ");
                 Console.Write(total);
             }
-            else if (type == "BINARY" || type == "Binary" || type == "binary") {
+            else if ( type == "BINARY" || type == "Binary" || type == "binary" )
+            {
                 val.Trim();
                 String[] eightBits = val.Split(perSeperator, count, StringSplitOptions.None);
                 int stringPosition = eightBits.Length;
                 Console.WriteLine("Your decimal number is: ");
+                string final = "";
 
-                foreach (string i in eightBits) {
+                foreach ( string i in eightBits )
+                {
                     stringPosition -= 1;
-                    if (i.Length != 8)
+                    if ( i.Length != 8 )
                     {
                         Console.WriteLine("The length of one of 8-bit segments was not 8! Make sure every 8 bits is separated with a period (.)!\n");
-                        return;
                     }
-                    else {
+                    else
+                    {
                         double total = 0;
                         double max = 128;
-                        foreach (char a in i)
+                        foreach ( char a in i )
                         {
 
-                            if (Char.GetNumericValue(a) == 1)
+                            if ( Char.GetNumericValue(a) == 1 )
                             {
                                 total += max;
                             }
                             max /= 2;
                         }
 
-                        if (stringPosition == 0)
+                        if ( stringPosition == 0 )
                         {
                             Console.Write(total);
+                            final = final + total.ToString();
+
                         }
-                        else {
+                        else
+                        {
                             Console.Write(total + ".");
+                            final = final + total.ToString() + ".";
                         }
-                        
+
                     }
                 }
             }
-
 
         }
 
@@ -429,6 +436,12 @@ namespace methods {
                 }
 
                 Console.WriteLine("Your Octal Value is: {0}", collecter);
+            }
+            else if ( type.ToLower().Equals("hexadecimal") )
+            {
+
+
+
             }
         }
     }
