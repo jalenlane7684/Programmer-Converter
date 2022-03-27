@@ -6,31 +6,32 @@ using System.Threading.Tasks;
 using System.Threading;
 using MainProgram;
 
-namespace methods {
-    public class Converters {
-        private char[] perSeperator = { '.' };
-        private Int32 count = 99;
-        private int eightSlot;
-        private int fourSlot;
-        private int twoSlot;
-        private int oneSlot;
-        private int biTotal;
-        private char switcher;
+namespace Methods {
+    public static class Converters {
+        private static char[] perSeperator = { '.' };
+        private static Int32 count = 99;
+        private static int eightSlot;
+        private static int fourSlot;
+        private static int twoSlot;
+        private static int oneSlot;
+        private static int biTotal;
+        private static char switcher;
 
-        public void ConvToHexa(string val, string type) {
+        public static string ConvToHexa (string val, string type) {
             Console.ForegroundColor = ConsoleColor.Green;
+            string result = "";
             if (type == "binary" || type == "BINARY" || type == "Binary")
             {
                 Int32 count = 8;
                 String[] bits = val.Split(perSeperator, count, StringSplitOptions.None);
                 List<char> hexas = new List<char>();
+                
 
-                Console.Write("Your hexadecimal is: ");
                 foreach (string bit in bits)
                 {
                     if (bit.Length != 4) {
                         Console.WriteLine("One of your 4-bit segments is not 4 bits!");
-                        return;
+                        return "";
                     }
                     if (bit[0] == '1')
                     {
@@ -76,35 +77,35 @@ namespace methods {
                     {
                         case 10:
                             switcher = 'A';
-                            Console.Write(switcher);
+                            result = result + switcher;
                             break;
 
                         case 11:
                             switcher = 'B';
-                            Console.Write(switcher);
+                            result = result + switcher;
                             break;
 
                         case 12:
                             switcher = 'C';
-                            Console.Write(switcher);
+                            result = result + switcher;
                             break;
 
                         case 13:
                             switcher = 'D';
-                            Console.Write(switcher);
+                            result = result + switcher;
                             break;
 
                         case 14:
                             switcher = 'E';
-                            Console.Write(switcher);
+                            result = result + switcher;
                             break;
 
                         case 15:
                             switcher = 'F';
-                            Console.Write(switcher);
+                            result = result + switcher;
                             break;
                         default:
-                            Console.Write(biTotal);
+                            result = result + switcher;
                             break;
                     }
 
@@ -114,7 +115,6 @@ namespace methods {
                 }
             }
             else if (type == "DECIMAL" || type == "Decimal" || type == "decimal") {
-                Console.WriteLine("Your Hexadecimal number is: ");
                 val.Trim();
                 int dec = int.Parse(val);
                 
@@ -132,36 +132,38 @@ namespace methods {
                     switch (i)
                     {
                         case 10:
-                            Console.Write('A');
+                            result = result + 'A';
                             break;
                         case 11:
-                            Console.Write('B');
+                            result = result + 'B';
                             break;
                         case 12:
-                            Console.Write('C');
+                            result = result + 'C';
                             break;
                         case 13:
-                            Console.Write('D');
+                            result = result + 'D';
                             break;
                         case 14:
-                            Console.Write('E');
+                            result = result + 'E';
                             break;
                         case 15:
-                            Console.Write('F');
+                            result = result + 'F';
                             break;
                         default:
-                            Console.Write(i);
+                            result = result + i; ;
                             break;
                     }
                 }
 
             }
-            
+
+            return result;
         }
 
-        public void ConvToBinary(string val, string type) {
+        public static string ConvToBinary ( string val, string type ) {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            if (type == "hexadecimal" || type == "Hexadecimal" || type == "HEXADECIMAL")
+            string result = "";
+            if ( type.ToLower().Equals("hexadecimal"))
             {
                 val.Trim();
 
@@ -193,79 +195,79 @@ namespace methods {
                 {'9',"1001" },
                 };
 
-                Console.Write("\nYour binary is: ");
 
-                foreach (char i in val)
+
+
+                foreach ( char i in val )
                 {
-                    if (d.ContainsKey(i))
+                    if ( d.ContainsKey(i) )
                     {
-                        Console.Write(d[i]);
-                        Console.Write(" ");
+                        result = result + d[i];
+                        result = result + " ";
                     }
-                    else if (y.ContainsKey(i))
+                    else if ( y.ContainsKey(i) )
                     {
-                        Console.Write(y[i]);
-                        Console.Write(" ");
+                        result = result + y[i];
+                        result = result + " ";
                     }
                 }
 
             }
-            else if (type == "decimal" || type == "Decimal" || type == "DECIMAL") {
+            else if ( type.ToLower().Equals("decimal") ) {
 
                 val.Trim();
                 String[] octets = val.Split(perSeperator, count, StringSplitOptions.None);
-                Console.Write("\nYour binary number is:");
 
-                foreach (string octet in octets) {
+                foreach ( string octet in octets ) {
                     int value = Convert.ToInt32(octet);
                     string binaryOutput = "0000 0000";
                     StringBuilder bO = new StringBuilder(binaryOutput);
 
-                    while (value > 0)
+                    while ( value > 0 )
                     {
-                        if (value >= 128)
+                        if ( value >= 128 )
                         {
                             bO[0] = '1';
                             value -= 128;
                             continue;
                         }
-                        else if (value >= 64 && value < 128)
+                        else if ( value >= 64 && value < 128 )
                         {
                             bO[1] = '1';
                             value -= 64;
                             continue;
                         }
-                        else if (value >= 32 && value < 64)
+                        else if ( value >= 32 && value < 64 )
                         {
                             bO[2] = '1';
                             value -= 32;
                             continue;
                         }
-                        else if (value >= 16 && value < 32)
+                        else if ( value >= 16 && value < 32 )
                         {
                             bO[3] = '1';
                             value -= 16;
                             continue;
                         }
-                        else if (value >= 8 && value < 16)
+                        else if ( value >= 8 && value < 16 )
                         {
                             bO[5] = '1';
                             value -= 8;
                             continue;
                         }
-                        else if (value >= 4 && value < 8)
+                        else if ( value >= 4 && value < 8 )
                         {
                             bO[6] = '1';
                             value -= 4;
                             continue;
                         }
-                        else if (value >= 2 && value < 4)
+                        else if ( value >= 2 && value < 4 )
                         {
                             bO[7] = '1';
                             value -= 2;
                             continue;
                         }
-                        else if (value >= 1 && value < 2)
+                        else if ( value >= 1 && value < 2 )
                         {
                             bO[8] = '1';
                             value -= 1;
@@ -274,16 +276,87 @@ namespace methods {
 
                     }
 
-                    Console.Write("\n" + bO);
+                    result = result + "\n" + bO;
 
                 }
             }
+            else if ( type.ToLower().Equals("octaldecimal") )
+            {
+                val = ConvToDec(val, type);
+                val.Trim();
+                String[] octets = val.Split(perSeperator, count, StringSplitOptions.None);
+
+                foreach ( string octet in octets )
+                {
+                    int value = Convert.ToInt32(octet);
+                    string binaryOutput = "0000 0000";
+                    StringBuilder bO = new StringBuilder(binaryOutput);
+
+                    while ( value > 0 )
+                    {
+                        if ( value >= 128 )
+                        {
+                            bO[0] = '1';
+                            value -= 128;
+                            continue;
+                        }
+                        else if ( value >= 64 && value < 128 )
+                        {
+                            bO[1] = '1';
+                            value -= 64;
+                            continue;
+                        }
+                        else if ( value >= 32 && value < 64 )
+                        {
+                            bO[2] = '1';
+                            value -= 32;
+                            continue;
+                        }
+                        else if ( value >= 16 && value < 32 )
+                        {
+                            bO[3] = '1';
+                            value -= 16;
+                            continue;
+                        }
+                        else if ( value >= 8 && value < 16 )
+                        {
+                            bO[5] = '1';
+                            value -= 8;
+                            continue;
+                        }
+                        else if ( value >= 4 && value < 8 )
+                        {
+                            bO[6] = '1';
+                            value -= 4;
+                            continue;
+                        }
+                        else if ( value >= 2 && value < 4 )
+                        {
+                            bO[7] = '1';
+                            value -= 2;
+                            continue;
+                        }
+                        else if ( value >= 1 && value < 2 )
+                        {
+                            bO[8] = '1';
+                            value -= 1;
+                            continue;
+                        }
+
+                    }
+
+                    result = result + "\n" + bO;
+                }
+            }
+            return result;
         }
 
-        public void ConvToDec ( string val, string type )
+        public static string ConvToDec ( string val, string type )
         {
+
+            string result = "";
             Console.ForegroundColor = ConsoleColor.Yellow;
-            if ( type == "hexadecimal" || type == "Hexadecimal" || type == "HEXADECIMAL" )
+            if ( type.ToLower().Equals("hexadecimal") )
             {
                 val.Trim();
                 int hexaPower = val.Length - 1;
@@ -370,16 +443,13 @@ namespace methods {
                         }
                     }
                 }
-                Console.WriteLine("Your decimal number is: ");
-                Console.Write(total);
+                result = total.ToString();
             }
-            else if ( type == "BINARY" || type == "Binary" || type == "binary" )
+            else if ( type.ToLower().Equals("binary") )
             {
                 val.Trim();
                 String[] eightBits = val.Split(perSeperator, count, StringSplitOptions.None);
                 int stringPosition = eightBits.Length;
-                Console.WriteLine("Your decimal number is: ");
-                string final = "";
 
                 foreach ( string i in eightBits )
                 {
@@ -404,45 +474,54 @@ namespace methods {
 
                         if ( stringPosition == 0 )
                         {
-                            Console.Write(total);
-                            final = final + total.ToString();
+                            result = result + total.ToString();
 
                         }
                         else
                         {
-                            Console.Write(total + ".");
-                            final = final + total.ToString() + ".";
+                            result = result + total.ToString() + ".";
                         }
 
                     }
                 }
             }
+            else if ( type.ToLower().Equals("octaldecimal"))
+            {
+                int total = 0;
+                for (int i = val.Length - 1; i >= 0; i-- )
+                {
+                    total = total + (int)Math.Pow(Convert.ToInt32(val.Substring(i, 1)), i);
+                }
+
+                result = total.ToString();
+            }
+            return result;
 
         }
 
-        public void ConvToOctal ( string val, string type )
+        public static string ConvToOctal ( string val, string type )
         {
-            if ( type.ToLower().Equals("decimal") )
+            string result = "";
+            string converted = "";
+
+            if (type.ToLower().Equals("binary") || type.ToLower().Equals("decimal")  || type.ToLower().Equals("hexadecimal") )
             {
+                converted = ConvToDec(val, type);
                 int num = Convert.ToInt32(val);
                 int remainder = 0;
-                string collecter = "";
 
                 while ( num > 0 )
                 {
                     remainder = num % 8;
                     num /= 8;
-                    collecter = remainder.ToString() + collecter;
+                    result = remainder.ToString() + result;
                 }
-
-                Console.WriteLine("Your Octal Value is: {0}", collecter);
-            }
-            else if ( type.ToLower().Equals("hexadecimal") )
+            } else
             {
-
-
-
+                Console.WriteLine("You did not use one of the listed value types. Please convert from binary, decimal, or hexadecimal.");
             }
+
+            return result;
         }
     }
 }
